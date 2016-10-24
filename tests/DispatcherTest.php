@@ -111,7 +111,10 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
                 $pr = $frame->next($request);
                 $res = (new ResponseFactory())->createResponse($this->code);
 
-                return $res->withAddedHeader('X-Middleware-Name', $pr->getHeaderLine('X-Middleware-Name') . $this->name);
+                return $res->withAddedHeader(
+                    'X-Middleware-Name',
+                    $pr->getHeaderLine('X-Middleware-Name') . $this->name
+                );
             }
         };
 
