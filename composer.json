@@ -1,0 +1,39 @@
+{
+    "name": "lucid/infusion",
+    "type": "package",
+    "description": "PSR-15 middleware stack.",
+    "require": {
+        "php": "^7.1",
+        "psr/http-message": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "iwyg",
+            "email": "mail@thomas-appel.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "zendframework/zend-diactoros": "^1.3",
+        "phpspec/prophecy": "1.6.x-dev",
+        "http-interop/http-factory-diactoros": "dev-master",
+        "sebastian/peek-and-poke": "^1.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lucid\\Infusion\\":"src/",
+            "Psr\\Http\\Middleware\\":"psr/http-middleware/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lucid\\Infusion\\Tests\\":"tests/"
+        }
+    },
+    "provide": {
+        "psr/http-middleware":"0.1.0",
+        "psr/http-factory":"0.1.0"
+    }
+}
