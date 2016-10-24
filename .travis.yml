@@ -9,12 +9,11 @@ matrix:
       env:
 
 before_install:
-  - echo $(which composer)
-  - php -n $(which composer) self-update
-  - php -n $(which composer) require --dev satooshi/php-coveralls:dev-master squizlabs/php_codesniffer:~2.5
+  - composer self-update
+  - composer require --dev satooshi/php-coveralls:dev-master squizlabs/php_codesniffer:~2.5
 
 install:
-  - php -n $(which composer) install --prefer-source --no-interaction
+  - composer install --prefer-source --no-interaction
   - mkdir -p coverage
 
 script:
