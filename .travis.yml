@@ -1,0 +1,29 @@
+sudo: false
+
+language: php
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.1
+      env:
+
+before_install:
+  - php -n $(which composer) self-update
+  - php -n $(which composer) require --no-update satooshi/php-coveralls:dev-master
+  - php -n $(which composer) require --no-update squizlabs/php_codesniffer:~2.5
+
+install:
+  - php -n $(which composer) install --prefer-source --no-interaction
+  - mkdir -p coverage
+
+script:
+  - php vendor/bin/phpunit --coverage-clover coverage/clover.xml
+  - php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
+
+after_script:
+  - then php vendor/bin/coveralls
+
+notififation:
+  on_success: never
+  on_failure: always
