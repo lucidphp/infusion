@@ -10,8 +10,7 @@ matrix:
 
 before_install:
   - php -n $(which composer) self-update
-  - php -n $(which composer) require --no-update satooshi/php-coveralls:dev-master
-  - php -n $(which composer) require --no-update squizlabs/php_codesniffer:~2.5
+  - php -n $(which composer) require --no-update satooshi/php-coveralls:dev-master squizlabs/php_codesniffer:~2.5
 
 install:
   - php -n $(which composer) install --prefer-source --no-interaction
@@ -22,7 +21,7 @@ script:
   - php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
 
 after_script:
-  - then php vendor/bin/coveralls
+  - php vendor/bin/coveralls
 
 notififation:
   on_success: never
