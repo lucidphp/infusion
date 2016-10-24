@@ -130,6 +130,6 @@ class Dispatcher implements StackInterface, DelegateInterface
      */
     private function newErrResponse() : ResponseInterface
     {
-        return $this->factory->createResponse()->withStatus(500, 'no subsequent response.');
+        return $this->factory->createResponse()->withStatus(444, 'no response.');
     }
 }

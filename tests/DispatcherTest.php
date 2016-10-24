@@ -13,6 +13,7 @@ use Psr\Http\Middleware\StackInterface;
 use SebastianBergmann\PeekAndPoke\Proxy;
 use Http\Factory\Diactoros\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Middleware\DelegateInterface;
 use Psr\Http\Middleware\MiddlewareInterface;
@@ -69,7 +70,23 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function itShouldBuildDelegates()
+    public function itShouldReturn444ResponseIfNoResponseWasCreatedByAnyMiddleware()
+    {
+        $req = $this->getMockBuilder(RequestInterface::class)->getMock();
+        $res = $this->getMockBuilder(ResponseInterface::class)->getMock();
+
+        $m1 = $this->mockMiddleware($req, $res);
+        $m2 = $this->mockMiddleware($req, $res);
+        $m3 = $this->mockMiddleware($req, $res);
+
+        $dispatcher = new Dispatcher(new ResponseFactory, [$m1, $m2, $m3]);
+        $response = $dispatcher->process($req);
+
+        $this->assertSame(444, $response->getStatusCode());
+    }
+
+    /** @test */
+    public function itShouldDelegatesMiddleware()
     {
         $req = $this->getMockBuilder(ServerRequestInterface::class)->getMock();
         $res = $this->getMockBuilder(ResponseInterface::class)->getMock();
@@ -90,10 +107,9 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
                 DelegateInterface $frame
             ) : ResponseInterface {
                 $pr = $frame->next($request);
-                $res = $this->unit->getMockBuilder(ResponseInterface::class)->getMock();
-                $res->method('getStatusCode')->willReturn($this->code);
+                $res = (new ResponseFactory())->createResponse($this->code);
 
-                return $res;
+                return $res->withAddedHeader('X-Middleware-Name', $pr->getHeaderLine('X-Middleware-Name') . $this->name);
             }
         };
 
@@ -108,8 +124,9 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $m3->code = 404;
 
         $dispatcher = new Dispatcher(new ResponseFactory, [$m1, $m2, $m3]);
-
-        var_dump($dispatcher->process($req)->getStatusCode());
+        $response = $dispatcher->process($req);
+        $this->assertSame('ABC', $response->getHeaderLine('X-Middleware-Name'));
+        $this->assertSame(404, $dispatcher->process($req)->getStatusCode());
     }
 
     private function mockMiddleware(RequestInterface $request, ResponseInterface $response, \Closure $ret = null)
