@@ -1,21 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malcolm
- * Date: 22.10.16
- * Time: 11:27
+
+/*
+ * This File is part of the Lucid\Infusion package
+ *
+ * (c) iwyg <mail@thomas-appel.com>
+ *
+ * For full copyright and license information, please refer to the LICENSE file
+ * that was distributed with this package.
  */
 
 namespace Lucid\Infusion;
 
-use Interop\Http\Factory\ResponseFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Middleware\ClientMiddlewareInterface;
-use Psr\Http\Middleware\MiddlewareInterface;
-use Psr\Http\Middleware\ServerMiddlewareInterface;
 use Psr\Http\Middleware\StackInterface;
 use Psr\Http\Middleware\DelegateInterface;
+use Psr\Http\Middleware\MiddlewareInterface;
+use Psr\Http\Middleware\ServerMiddlewareInterface;
+use Psr\Http\Middleware\ClientMiddlewareInterface;
+use Interop\Http\Factory\ResponseFactoryInterface;
 
 /**
  * Class Dispatcher

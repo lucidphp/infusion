@@ -1,9 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malcolm
- * Date: 23.10.16
- * Time: 15:06
+
+/*
+ * This File is part of the Lucid\Infusion package
+ *
+ * (c) iwyg <mail@thomas-appel.com>
+ *
+ * For full copyright and license information, please refer to the LICENSE file
+ * that was distributed with this package.
  */
 
 namespace Lucid\Infusion\Tests;
@@ -18,7 +21,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Middleware\DelegateInterface;
 use Psr\Http\Middleware\MiddlewareInterface;
 use Psr\Http\Middleware\ServerMiddlewareInterface;
-
 
 class DispatcherTest extends \PHPUnit_Framework_TestCase
 {
