@@ -4,7 +4,7 @@
     "description": "PSR-15 middleware stack.",
     "require": {
         "php": "^7.1",
-        "psr/http-message": "^1.0",
+        "psr/http-message": "^1.0"
     },
     "license": "MIT",
     "authors": [
@@ -33,6 +33,6 @@
         }
     },
     "provide": {
-        "psr/http-middleware":"0.1.0"
+        "psr/http-middleware":"dev-develop"
     }
 }
