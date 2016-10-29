@@ -38,8 +38,8 @@ class Dispatcher implements StackInterface, DelegateInterface
     /**
      * Dispatcher constructor.
      *
-     * @param \Interop\Http\Factory\ResponseFactoryInterface $factory
-     * @param array $middleware
+     * @param ResponseFactoryInterface $factory
+     * @param MiddlewareInterface[] $middleware
      */
     public function __construct(ResponseFactoryInterface $factory, array $middleware = [])
     {
