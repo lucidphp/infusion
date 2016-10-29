@@ -23,6 +23,7 @@ use Interop\Http\Factory\ResponseFactoryInterface;
 /**
  * Class Dispatcher
  * @package Lucid\Infusion
+ * @author Thomas Appel <mail@thomas-appel.com>
  */
 class Dispatcher implements StackInterface, DelegateInterface
 {
