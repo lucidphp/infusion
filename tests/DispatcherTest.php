@@ -3,7 +3,7 @@
 /*
  * This File is part of the Lucid\Infusion package
  *
- * (c) iwyg <mail@thomas-appel.com>
+ * (c) Thomas Appel <mail@thomas-appel.com>
  *
  * For full copyright and license information, please refer to the LICENSE file
  * that was distributed with this package.
@@ -22,6 +22,11 @@ use Psr\Http\Middleware\DelegateInterface;
 use Psr\Http\Middleware\MiddlewareInterface;
 use Psr\Http\Middleware\ServerMiddlewareInterface;
 
+/**
+ * Class DispatcherTest
+ * @package Lucid\Infusion
+ * @author  Thomas Appel <mail@thomas-appel.com>
+ */
 class DispatcherTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
@@ -74,7 +79,9 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function itShouldReturn444ResponseIfNoResponseWasCreatedByAnyMiddleware()
     {
+        /** @var RequestInterface $req */
         $req = $this->getMockBuilder(RequestInterface::class)->getMock();
+        /** @var ResponseInterface $res */
         $res = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
         $m1 = $this->mockMiddleware($req, $res);
