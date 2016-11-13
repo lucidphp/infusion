@@ -15,10 +15,10 @@ before_install:
 install:
   - composer install --prefer-source --no-interaction
   - if [[ ! $(php -m | grep -i xdebug) ]]; then pecl install xdebug && phpenv rehash; fi;
-  - mkdir -p ./coverage
+  - mkdir -p coverage
 
 script:
-  - ./vendor/bin/phpunit --coverage-clover coverage/clover.xml
+  - ./vendor/bin/phpunit --verbose --coverage-clover coverage/clover.xml
   - ./vendor/bin/phpcs --config-set installed_paths vendor/object-calisthenics/phpcs-calisthenics-rules/src
   - ./vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
   - ./vendor/bin/phpcs --standard=ObjectCalisthenics src
