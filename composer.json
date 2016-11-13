@@ -19,7 +19,8 @@
         "zendframework/zend-diactoros": "^1.3",
         "phpspec/prophecy": "1.6.x-dev",
         "http-interop/http-factory-diactoros": "dev-master",
-        "sebastian/peek-and-poke": "^1.0@dev"
+        "sebastian/peek-and-poke": "^1.0@dev",
+        "object-calisthenics/phpcs-calisthenics-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {

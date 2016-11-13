@@ -53,10 +53,10 @@ class Dispatcher implements StackInterface, DelegateInterface
      */
     public function withMiddleware(MiddlewareInterface $middleware) : StackInterface
     {
-        $mw   = $this->middleware;
-        $mw[] = $middleware;
+        $middlewwares   = $this->middleware;
+        $middlewwares[] = $middleware;
 
-        return new self($this->factory, $mw);
+        return new self($this->factory, $middlewwares);
     }
 
     /**
@@ -66,8 +66,8 @@ class Dispatcher implements StackInterface, DelegateInterface
     {
         return new self(
             $this->factory,
-            array_filter($this->middleware, function (MiddlewareInterface $mw) use ($middleware) {
-                return $mw !== $middleware;
+            array_filter($this->middleware, function (MiddlewareInterface $middlewares) use ($middleware) {
+                return $middlewares !== $middleware;
             })
         );
     }
@@ -134,6 +134,8 @@ class Dispatcher implements StackInterface, DelegateInterface
      */
     private function newErrResponse() : ResponseInterface
     {
-        return $this->factory->createResponse()->withStatus(444, 'no response.');
+        $response = $this->factory->createResponse();
+
+        return $response->withStatus(444, 'no response.');
     }
 }
