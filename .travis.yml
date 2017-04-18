@@ -10,19 +10,22 @@ matrix:
 
 before_install:
   - composer self-update
-  - composer require --dev satooshi/php-coveralls:dev-master squizlabs/php_codesniffer:~2.5
+  #- composer require --dev satooshi/php-coveralls:dev-master object-calisthenics/phpcs-calisthenics-rules:^2.0
 
 install:
   - composer install --prefer-source --no-interaction
-  - pecl install xdebug
+  - if [[ ! $(php -m | grep -i xdebug) ]]; then pecl install xdebug; fi;
+  - phpenv rehash
   - mkdir -p coverage
 
 script:
-  - php vendor/bin/phpunit --coverage-clover coverage/clover.xml
-  - php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
+  - ./vendor/bin/phpunit --verbose --coverage-clover coverage/clover.xml
+  #- ./vendor/bin/phpcs --config-set installed_paths vendor/object-calisthenics/phpcs-calisthenics-rules/src
+  - ./vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
+  #- ./vendor/bin/phpcs --standard=ObjectCalisthenics src
 
 after_script:
-  - php vendor/bin/coveralls
+  - ./vendor/bin/coveralls
 
 notififation:
   on_success: never

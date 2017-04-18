@@ -4,7 +4,8 @@
     "description": "PSR-15 middleware stack.",
     "require": {
         "php": "^7.1",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "http-interop/http-middleware": "^1.0"
     },
     "license": "MIT",
     "authors": [
@@ -15,24 +16,20 @@
     ],
     "minimum-stability": "dev",
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
+        "phpunit/phpunit": "^6.1@dev",
         "zendframework/zend-diactoros": "^1.3",
-        "phpspec/prophecy": "1.6.x-dev",
         "http-interop/http-factory-diactoros": "dev-master",
-        "sebastian/peek-and-poke": "^1.0@dev"
+        "sebastian/peek-and-poke": "^1.0@dev",
+        "object-calisthenics/phpcs-calisthenics-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Lucid\\Infusion\\":"src/",
-            "Psr\\Http\\Middleware\\":"psr/http-middleware/"
+            "Lucid\\Infusion\\":"src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lucid\\Infusion\\Tests\\":"tests/"
+            "Lucid\\Tests\\Infusion\\":"tests/"
         }
-    },
-    "provide": {
-        "psr/http-middleware":"dev-develop"
     }
 }
