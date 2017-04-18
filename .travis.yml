@@ -10,7 +10,7 @@ matrix:
 
 before_install:
   - composer self-update
-  - composer require --dev satooshi/php-coveralls:dev-master object-calisthenics/phpcs-calisthenics-rules:^2.0
+  #- composer require --dev satooshi/php-coveralls:dev-master object-calisthenics/phpcs-calisthenics-rules:^2.0
 
 install:
   - composer install --prefer-source --no-interaction
@@ -20,9 +20,9 @@ install:
 
 script:
   - ./vendor/bin/phpunit --verbose --coverage-clover coverage/clover.xml
-  - ./vendor/bin/phpcs --config-set installed_paths vendor/object-calisthenics/phpcs-calisthenics-rules/src
+  #- ./vendor/bin/phpcs --config-set installed_paths vendor/object-calisthenics/phpcs-calisthenics-rules/src
   - ./vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* src tests
-  - ./vendor/bin/phpcs --standard=ObjectCalisthenics src
+  #- ./vendor/bin/phpcs --standard=ObjectCalisthenics src
 
 after_script:
   - ./vendor/bin/coveralls
