@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This File is part of the Lucid\Infusion package
@@ -11,12 +11,16 @@
 
 namespace Lucid\Tests\Infusion;
 
-use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Lucid\Infusion\Middlewares;
-use Lucid\Infusion\PoolInterface;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\Comparator\MockObjectComparator;
+use Lucid\Infusion\PoolInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
 
+/**
+ * Class MiddlewaresTest
+ * @package Lucid\Infusion
+ * @author Thomas Appel <mail@thomas-appel.com>
+ */
 class MiddlewaresTest extends TestCase
 {
     /** @test */
