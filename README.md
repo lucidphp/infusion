@@ -7,4 +7,4 @@
 [![HHVM](https://img.shields.io/hhvm/lucid/infusion/dev-develop.svg?style=flat-square)](http://hhvm.h4cc.de/package/lucid/infusion)
 -->
 
-See draft of [PSR 15](https://github.com/php-fig/fig-standards/blob/develop/proposed/http-middleware/middleware.md).
+See draft of [PSR 15](https://github.com/php-fig/fig-standards/tree/master/proposed/http-middleware).
